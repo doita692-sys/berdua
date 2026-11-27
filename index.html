@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff0f6">
+  <title>LOVE MATE ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-heart heart-one">♡</div><div class="bg-heart heart-two">♡</div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-icon">♡</span><span>LOVE <b>MATE</b><small>a little space for two</small></span></a>
+      <div class="top-actions"><span id="connection" class="connection">● Belum terhubung</span><button id="leaveBtn" class="btn btn-light hidden">Keluar</button></div>
+    </header>
+
+    <section id="setupScreen" class="setup-card">
+      <div class="hero-heart">💗</div>
+      <p class="eyebrow">YOUR LITTLE LOVE UNIVERSE</p>
+      <h1>Semua cerita indah<br>dimulai dari <em>kita.</em></h1>
+      <p class="muted intro">Buat ruang kecil untuk menyimpan mood, kenangan, rencana kencan, dan hal-hal manis kalian.</p>
+      <div class="setup-grid">
+        <label>Nama kamu<input id="yourName" maxlength="24" placeholder="Contoh: Ayang" /></label>
+        <label>Nama pasangan<input id="partnerName" maxlength="24" placeholder="Contoh: Beb" /></label>
+      </div>
+      <div class="setup-grid">
+        <button id="createBtn" class="btn btn-primary">♡ Buat ruang berdua</button>
+        <div class="join-box"><input id="roomInput" maxlength="6" placeholder="KODE RUANG" /><button id="joinBtn" class="btn btn-outline">Gabung</button></div>
+      </div>
+      <p class="hint">Satu orang buat ruang, lalu bagikan kode 6 karakter kepada pasangan.</p>
+      <p id="setupError" class="error"></p>
+    </section>
+
+    <section id="appScreen" class="hidden">
+      <div class="welcome">
+        <div><p class="eyebrow">OUR LITTLE UNIVERSE</p><h1>Hai, <span id="welcomeName">Sayang</span>! <span class="wave">✿</span></h1><p class="muted">Hari ini mau bikin kenangan apa?</p></div>
+        <div class="room-pill">ROOM <b id="roomCode">------</b><button id="copyCode" title="Salin kode">⧉</button></div>
+      </div>
+      <div class="couple-banner">
+        <div class="avatar">🧸</div><div class="couple-text"><b id="coupleNames">Kamu & Pasangan</b><span>Tempat kecil untuk cerita besar kalian ♡</span></div><div class="banner-heart">♡</div>
+      </div>
+
+      <nav class="tabs" aria-label="Menu aplikasi">
+        <button class="tab active" data-tab="home">🏠 Beranda</button>
+        <button class="tab" data-tab="mood">🌈 Mood</button>
+        <button class="tab" data-tab="quiz">🎀 Love Quiz</button>
+        <button class="tab" data-tab="wishlist">✨ Wishlist</button>
+        <button class="tab" data-tab="memories">📸 Kenangan</button>
+        <button class="tab" data-tab="savings">🐷 Tabungan</button>
+      </nav>
+
+      <section id="tab-home" class="tab-panel">
+        <div class="section-heading"><div><p class="eyebrow">A QUICK CHECK-IN</p><h2>Kabar hati hari ini</h2></div><span class="date-chip" id="todayDate"></span></div>
+        <div class="grid two">
+          <article class="card mood-card"><div class="card-title"><span>🌷 Mood kalian</span><span class="tiny">update kapan saja</span></div><div id="homeMoods" class="mood-summary"><p class="muted">Belum ada mood hari ini.</p></div><button class="text-btn" data-goto="mood">Update mood →</button></article>
+          <article class="card quote-card"><span class="quote-mark">“</span><p id="dailyQuote">Hal kecil yang dilakukan bersama bisa jadi kenangan besar.</p><span class="tiny">LOVE NOTE OF THE DAY</span><button id="newQuote" class="text-btn">Kata-kata lain ↻</button></article>
+        </div>
+        <div class="section-heading compact"><div><p class="eyebrow">YOUR LITTLE PLANS</p><h2>Rencana & kenangan</h2></div></div>
+        <div class="grid three">
+          <article class="mini-card"><span>✨</span><b id="wishCount">0</b><small>Wishlist</small></article>
+          <article class="mini-card"><span>📸</span><b id="memoryCount">0</b><small>Kenangan</small></article>
+          <article class="mini-card"><span>🐷</span><b id="savingTotal">Rp0</b><small>Tabungan bersama</small></article>
+        </div>
+        <article class="card love-machine"><div><p class="eyebrow">EMERGENCY LOVE BUTTON</p><h2>Lagi kangen? 💌</h2><p class="muted">Tekan tombol untuk mendapatkan rayuan dadakan.</p><p id="loveOutput" class="love-output">“Kamu itu seperti Wi-Fi, bikin aku selalu ingin terhubung.”</p></div><button id="loveBtn" class="btn btn-primary">Kasih aku gombalan ♡</button></article>
+      </section>
+
+      <section id="tab-mood" class="tab-panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">HOW IS YOUR HEART?</p><h2>Mood hari ini 🌈</h2><p class="muted">Pilih perasaanmu supaya pasangan tahu kabarmu.</p></div></div>
+        <div class="mood-options">
+          <button class="mood-option" data-mood="Senang" data-emoji="🥰"><span>🥰</span>Senang</button>
+          <button class="mood-option" data-mood="Bahagia" data-emoji="🤩"><span>🤩</span>Bahagia</button>
+          <button class="mood-option" data-mood="Biasa saja" data-emoji="😌"><span>😌</span>Biasa saja</button>
+          <button class="mood-option" data-mood="Lelah" data-emoji="🥺"><span>🥺</span>Lelah</button>
+          <button class="mood-option" data-mood="Sedih" data-emoji="😢"><span>😢</span>Sedih</button>
+          <button class="mood-option" data-mood="Butuh peluk" data-emoji="🫂"><span>🫂</span>Butuh peluk</button>
+        </div>
+        <article class="card"><h3>Mood kalian</h3><div id="moodList" class="stack-list"><p class="muted">Belum ada yang update.</p></div></article>
+      </section>
+
+      <section id="tab-quiz" class="tab-panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">HOW WELL DO YOU KNOW US?</p><h2>Love Quiz 🎀</h2><p class="muted">Jawab pertanyaan ringan tentang hubungan kalian.</p></div></div>
+        <article class="card quiz-card"><span class="quiz-number" id="quizNumber">QUESTION 01</span><h2 id="quizQuestion">Apa makanan favorit pasanganmu?</h2><div id="quizChoices" class="quiz-choices"></div><p id="quizFeedback" class="muted"></p><button id="nextQuiz" class="btn btn-primary">Pertanyaan berikutnya →</button></article>
+      </section>
+
+      <section id="tab-wishlist" class="tab-panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">DREAM IT, DO IT TOGETHER</p><h2>Wishlist berdua ✨</h2><p class="muted">Kumpulkan hal-hal yang ingin kalian lakukan.</p></div></div>
+        <form id="wishForm" class="add-form"><input id="wishInput" maxlength="100" required placeholder="Contoh: Nonton film bareng..." /><button class="btn btn-primary">Tambah +</button></form>
+        <div id="wishList" class="stack-list"></div>
+      </section>
+
+      <section id="tab-memories" class="tab-panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">LITTLE MOMENTS, BIG MEMORIES</p><h2>Memory lane 📸</h2><p class="muted">Simpan cerita manis kalian di sini.</p></div></div>
+        <form id="memoryForm" class="add-form vertical"><input id="memoryTitle" maxlength="70" required placeholder="Judul kenangan..." /><textarea id="memoryText" maxlength="400" placeholder="Ceritakan momen ini..."></textarea><input id="memoryUrl" type="url" placeholder="Link foto (opsional, https://...)" /><button class="btn btn-primary">Simpan kenangan ♡</button></form>
+        <div id="memoryList" class="memory-grid"></div>
+      </section>
+
+      <section id="tab-savings" class="tab-panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">A DATE WITH A PLAN</p><h2>Tabungan kencan 🐷</h2><p class="muted">Sedikit demi sedikit, lama-lama jadi jalan-jalan.</p></div></div>
+        <article class="card savings-card"><span class="tiny">TOTAL TABUNGAN BERSAMA</span><h1 id="bigSavingTotal">Rp0</h1><div class="progress-track"><div id="savingProgress" class="progress-fill"></div></div><p id="savingProgressText" class="muted">Tentukan target impian kalian.</p><form id="targetForm" class="target-form"><input id="targetInput" type="number" min="1" placeholder="Target tabungan (Rp)" /><button class="btn btn-outline">Atur target</button></form></article>
+        <form id="savingForm" class="add-form"><input id="savingAmount" type="number" min="1" required placeholder="Nominal (contoh 20000)" /><input id="savingNote" maxlength="80" placeholder="Catatan (opsional)" /><button class="btn btn-primary">Tambah uang +</button></form>
+        <div id="savingList" class="stack-list"></div>
+      </section>
+      <footer>Made with ♡ for two people. <span>LOVE MATE</span></footer>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
